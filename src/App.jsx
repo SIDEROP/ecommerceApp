@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
@@ -14,7 +14,7 @@ import Success from './page/Success';
 import Cancel from './page/Cancel';
 import SingUp from './page/auth/SingUp';
 import NotFound from './page/NotFound';
-// shopin page
+// shopping pages
 import Home from './page/shopping/Home';
 import Order from './page/shopping/Order';
 import Cart from './page/shopping/Cart';
@@ -23,7 +23,7 @@ import Account from './page/shopping/Account';
 import Mobile from './page/shopping/Mobile';
 import ProductInfo from './page/shopping/ProductInfo';
 
-// admin page
+// admin pages
 import LoginAdmin from './page/admin/LoginAdmin';
 import AdminDashboard from './page/admin/AdminDashboard';
 import OrderAdmin from './page/admin/OrderAdmin';
@@ -36,38 +36,38 @@ const App = () => {
         <div id="rootMain">
             <Toaster />
             <Routes>
-                <Route path="/" element={<CheckAuth />}>
-                    {/* main noram route to shoping */}
-                    <Route path="/" element={<Home />} />
-                    <Route path="/mobile" element={<Mobile />} />
-                    {/* user accout shopw routes */}
-                    <Route path="/order" element={<Order />} />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route path="/Whislist" element={<Whislist />} />
-                    <Route path="/account" element={<Account />} />
+                <Route path="/ecommerceApp" element={<CheckAuth />}>
+                    {/* main normal route for shopping */}
+                    <Route path="/ecommerceApp" element={<Home />} />
+                    <Route path="/ecommerceApp/mobile" element={<Mobile />} />
+                    {/* user account shop routes */}
+                    <Route path="/ecommerceApp/order" element={<Order />} />
+                    <Route path="/ecommerceApp/cart" element={<Cart />} />
+                    <Route path="/ecommerceApp/whislist" element={<Whislist />} />
+                    <Route path="/ecommerceApp/account" element={<Account />} />
                     <Route
-                        path="/product/:productId"
+                        path="/ecommerceApp/product/:productId"
                         element={<ProductInfo />}
                     />
-                    <Route path="/search" element={<SearchProduct />} />
+                    <Route path="/ecommerceApp/search" element={<SearchProduct />} />
 
-                    <Route path="/success/:orderId" element={<Success />} />
-                    <Route path="/cancel" element={<Cancel />} />
+                    <Route path="/ecommerceApp/success/:orderId" element={<Success />} />
+                    <Route path="/ecommerceApp/cancel" element={<Cancel />} />
                 </Route>
 
-                <Route path="/auth" element={<AuthLayout />}>
+                <Route path="/ecommerceApp/auth" element={<AuthLayout />}>
                     <Route path="" element={<Login />} />
                     <Route path="register" element={<SingUp />} />
                 </Route>
 
-                <Route path="/" element={<AdminLayout />}>
+                <Route path="/ecommerceApp" element={<AdminLayout />}>
                     <Route path="admin" element={<AdminDashboard />} />
                     <Route path="adminorder" element={<OrderAdmin />} />
                     <Route path="product" element={<ProductAdmin />} />
                     <Route path="adminAccount" element={<AdminAccount />} />
                 </Route>
 
-                <Route path="/adminLogin" element={<AdminAuth />}>
+                <Route path="/ecommerceApp/adminLogin" element={<AdminAuth />}>
                     <Route path="" element={<LoginAdmin />} />
                 </Route>
 
