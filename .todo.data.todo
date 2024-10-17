@@ -1,0 +1,110 @@
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import '../admin/css/AdminAccount.css';
+import { updateUser } from '../../store/slices/authSlice';
+import { useNavigate } from 'react-router-dom';
+import Loader from '../../components/ui/loder';
+
+const Account = () => {
+    const {
+        isAuthenticated,
+        user,
+        loading: load,
+    } = useSelector((state) => state.auth.reLogin);
+    const { loading, error, success } = useSelector(
+        (state) => state.auth.updateUser
+    );
+
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [passwordAdmin, setPassword] = useState('');
+    const [gender, setGender] = useState('');
+    const [role, setRole] = useState('');
+    const [img, setImg] = useState('');
+    const dispatch = useDispatch();
+    let naviget = useNavigate();
+ 
+    useEffect(() => {
+        if (!isAuthenticated && user.role != 'user') {
+            return naviget('/auth', { replace: true });
+        }
+    }, [isAuthenticated]);
+
+    if (load) return <Loader />;
+
+    useEffect(() => {
+        if (user) {
+            setUsername(user?.username || '');
+            setEmail(user?.email || '');
+            setPassword('');
+            setGender(user?.gender || '');
+            setRole(user?.role || '');
+            setImg(user?.img || '');
+        }
+    }, [user]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(
+            updateUser({
+                data: { username, email, passwordAdmin, gender, role },
+            })
+        );
+    };
+
+    return (
+        <div className="AdminAccount">
+            <form onSubmit={handleSubmit}>
+                {img && <img src={img} alt="Profile" />}
+                <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Username"
+                />
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                />
+                <input
+                    type="password"
+                    value={passwordAdmin}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    minLength="6"
+                    maxLength="10"
+                />
+
+                <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    aria-readonly
+                    disabled
+                >
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Updating...' : 'Save'}
+                </button>
+            </form>
+        </div>
+    );
+};
+
+export default Account;

@@ -1,0 +1,403 @@
+Example of Consolidated Headers
+You could create a function to configure your Axios instance:
+
+
+const apiClient = axios.create({
+    baseURL: VITE_API_URL,
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+});
+
+// Usage in thunks
+const response = await apiClient.get('/products/getProduct');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FixedSizeList as List } from 'react-window';
+import './css/OrderAdmin.css';
+import {
+    fetchAllUserOrders,
+    updateOrderStatusAdmin,
+} from '../../store/slices/orderSlice';
+import Modal from '../../components/ui/Modal';
+
+const OrderAdmin = () => {
+    const dispatch = useDispatch();
+    const { orders, loading, error } = useSelector(
+        (state) => state.order.allUserOrders
+    );
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedStatus, setSelectedStatus] = useState('');
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [newStatus, setNewStatus] = useState('');
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Date Range State
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+
+    useEffect(() => {
+        dispatch(fetchAllUserOrders());
+    }, [dispatch]);
+
+    const filteredOrders = orders?.filter((order) => {
+        const products = Array.isArray(order.products)
+            ? order.products
+            : [order.products];
+
+        const productMatches = products?.some(
+            (product) =>
+                product.name
+                    ?.toLowerCase()
+                    ?.includes(searchTerm.toLowerCase()) ||
+                product.description
+                    ?.toLowerCase()
+                    ?.includes(searchTerm.toLowerCase())
+        );
+
+        const priceMatches = products?.some((product) =>
+            product.price?.toString()?.includes(searchTerm)
+        );
+
+        const matchesStatus = selectedStatus
+            ? order?.status === selectedStatus
+            : true;
+
+        // Date Range Filtering
+        const orderDate = new Date(order.createdAt);
+        const isInDateRange =
+            (!startDate || orderDate >= new Date(startDate)) &&
+            (!endDate || orderDate <= new Date(endDate));
+
+        return (
+            (productMatches || priceMatches) && matchesStatus && isInDateRange
+        );
+    });
+
+    const Row = ({ index }) => {
+        const order = filteredOrders[index];
+
+        const products = Array.isArray(order?.products)
+            ? order.products
+            : [order.products];
+
+        return (
+            <div className="orderCard" onClick={(e) => {
+                e.stopPropagation();
+                handleViewOrder(order);
+            }}>
+                <div className="productsList">
+                    {products.map((product, i) => (
+                        <div key={i} className="productItem">
+                            <img
+                                src={
+                                    product?.image ||
+                                    '/path/to/placeholder/image.jpg'
+                                }
+                                alt={product.name}
+                                className="productImage"
+                            />
+                            <p>
+                                <span>Product:</span>{' '}
+                                {product?.name
+                                    ?.split(' ')
+                                    .slice(0, 5)
+                                    .join(' ') + '..'}
+                            </p>
+                            <p>
+                                <span>Price:</span> ₹
+                                {product?.price?.toFixed(2)}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+                <p>
+                    <span>Name:</span> {order?.username}
+                </p>
+                <p>
+                    <span>Status:</span> {order?.status}
+                </p>
+                <div className="orderActions">
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleViewOrder(order);
+                        }}
+                    >
+                        View
+                    </button>
+                </div>
+            </div>
+        );
+    };
+
+    const handleViewOrder = (order) => {
+        setSelectedOrder(order);
+        setNewStatus(order?.status);
+        setCurrentIndex(0); // Reset index on new order view
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedOrder(null);
+        setCurrentIndex(0); // Reset index when closing modal
+    };
+
+    const nextProduct = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === selectedOrder.products.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    const prevProduct = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? selectedOrder.products.length - 1 : prevIndex - 1
+        );
+    };
+
+    const handleStatusUpdate = () => {
+        if (selectedOrder) {
+            dispatch(updateOrderStatusAdmin({ id: selectedOrder._id, status: newStatus }));
+            closeModal();
+        }
+    };
+
+    return (
+        <div className="OrderAdmin">
+            {/* Search and filter inputs */}
+            <div className="searchAdminProduct">
+                <span>
+                    <h4>Order List</h4>
+                    <div className="serchOrderAdmin">
+                        <input
+                            type="text"
+                            placeholder="Search by product name, description, or price"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <select
+                            value={selectedStatus}
+                            onChange={(e) => setSelectedStatus(e.target.value)}
+                        >
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="paid">Paid</option>
+                            <option value="refunded">Refunded</option>
+                            <option value="dispatched">Dispatched</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="canceled">Canceled</option>
+                            <option value="completed">completed</option>
+                        </select>
+
+                        <input
+                            className="inputAdSerch"
+                            type="date"
+                            style={{ width: 'fit-content' }}
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                        />
+                        <input
+                            className="inputAdSerch"
+                            style={{ width: 'fit-content' }}
+                            type="date"
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                        />
+                    </div>
+                    </span>
+</div>
+            <div className="orderList">
+                {loading && <p>Loading orders...</p>}
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {filteredOrders && filteredOrders.length > 0 ? (
+                    <List
+                        height={500}
+                        itemCount={filteredOrders.length}
+                        itemSize={100}
+                        width="100%"
+                    >
+                        {Row}
+                    </List>
+                ) : (
+                    <p>No orders found.</p>
+                )}
+            </div>
+
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                {selectedOrder && (
+                    <div>
+                        <h3>Order Details</h3>
+                        <div
+                            className={
+                                selectedOrder.products.length > 0
+                                    ? 'productArr'
+                                    : null
+                            }
+                        >
+                            {Array.isArray(selectedOrder.products) &&
+                            selectedOrder.products.length > 0 ? (
+                                <div className="slider">
+                                    <button onClick={prevProduct}>
+                                        &#10094;
+                                    </button>
+                                    <img
+                                        src={
+                                            selectedOrder?.products[currentIndex]?.image ||
+                                            '/path/to/placeholder/image.jpg'
+                                        }
+                                        alt={selectedOrder?.products[currentIndex]?.name || 'Placeholder'}
+                                        className="productImage"
+                                    />
+                                    <div className="db">
+                                        <p>
+                                            <span className="titel">
+                                                Product:
+                                            </span>{' '}
+                                            <span>
+                                                {
+                                                    selectedOrder?.products[currentIndex]?.name
+                                                }
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span className="titel">
+                                                Price: ₹
+                                            </span>
+                                            <span>
+                                                {selectedOrder?.products[currentIndex]?.price?.toFixed(2)}
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span className="titel">
+                                                Quantity:
+                                            </span>
+                                            <span>
+                                                {selectedOrder?.products[currentIndex]?.quantity}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <button onClick={nextProduct}>
+                                        &#10095;
+                                    </button>
+                                </div>
+                            ) : (
+                                <div>
+                                    <img
+                                        src={
+                                            selectedOrder?.products?.image ||
+                                            '/path/to/placeholder/image.jpg'
+                                        }
+                                        alt={
+                                            selectedOrder?.products?.name ||
+                                            'Placeholder'
+                                        }
+                                        className="productImage"
+                                    />
+                                    <p>
+                                        <span className="titel">Product:</span>{' '}
+                                        <span>
+                                            {selectedOrder?.products?.name}
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span className="titel">Price: ₹</span>
+                                        <span>
+                                            {selectedOrder?.products?.price?.toFixed(2)}
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span className="titel">Quantity:</span>
+                                        <span>
+                                            {selectedOrder?.products?.quantity}
+                                        </span>
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                        <p>
+                            <span className="titel">Customer Name:</span>{' '}
+                            {selectedOrder?.username}
+                        </p>
+                        {selectedOrder?.totalAmount && (
+                            <p>
+                                <span className="titel">Total Amount:</span>{' '}
+                                {selectedOrder?.totalAmount?.toFixed(2)}
+                            </p>
+                        )}
+                        {selectedOrder?.invoicePdf && (
+                            <button
+                                className="btnUpdateProduct"
+                                style={{ fontSize: '1rem' }}
+                            >
+                                <a
+                                    href={selectedOrder.invoicePdf}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Download Invoice
+                                </a>
+                            </button>
+                        )}
+                        <p>
+                            <span className="titel">Status:</span>{' '}
+                            <select
+                                value={newStatus}
+                                onChange={(e) => setNewStatus(e.target.value)}
+                            >
+                                <option value="pending">Pending</option>
+                                <option value="paid">Paid</option>
+                                <option value="refunded">Refunded</option>
+                                <option value="dispatched">Dispatched</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="canceled">Canceled</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </p>
+                        <button
+                            className="btnUpdateProduct"
+                            onClick={handleStatusUpdate}
+                        >
+                            Update Status
+                        </button>
+                    </div>
+                )}
+            </Modal>
+        </div>
+    );
+};
+
+export default OrderAdmin;
+
+
+

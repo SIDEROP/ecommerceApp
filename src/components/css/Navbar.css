@@ -1,0 +1,253 @@
+.Navbar {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 50px;
+    padding-block: 15px;
+    align-items: end;
+    border-bottom: 1px solid white;
+    top: 0;
+    transition: all ease 0.3s;
+    align-items: center;
+}
+.Navbar.show {
+    position: absolute;
+    top: -90px;
+    left: 0;
+}
+
+.Navbar .Navbar-inner1 a.active {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+
+.Navbar .Logo {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* 2  */
+
+.Navbar .Navbar-inner2 {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.Navbar .Navbar-inner2 span {
+    position: absolute;
+    left: 5px;
+    top: 35%;
+}
+
+.Navbar .Navbar-inner2 input:focus {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.578);
+}
+.Navbar .Navbar-inner2 input {
+    background-color: transparent;
+    color: white;
+    padding: 5px 0px 5px 30px;
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
+/* MainRouts */
+.Navbar.show #MainRouts {
+    left: -32px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+#MainRouts {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    color: white;
+    height: fit-content;
+    width: 60px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-block: 20px;
+    gap: 10px;
+    padding-inline: 5px;
+    transition: all ease-in-out 0.3s;
+    z-index: 99;
+}
+
+#MainRouts span a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#MainRouts span {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: relative;
+}
+
+#MainRouts a.active:before {
+    content: '';
+    width: 3px;
+    height: 90%;
+    background-color: #b6dabe;
+    position: absolute;
+    right: -5px;
+    border-radius: 2px;
+}
+#MainRouts span .tookTip {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+#MainRouts span:hover .tookTip {
+    position: absolute;
+    opacity: 1;
+    z-index: 1;
+    white-space: nowrap;
+    font-size: 12px;
+    left: 120%;
+    top: 30%;
+    background-color: #b6dabe;
+    height: fit-content;
+    color: black;
+    padding-inline: 10px;
+    width: fit-content;
+    transform: scale(0.9);
+    transition: all ease 0.3s;
+}
+
+.Navbar .btnMain {
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 450px) {
+    .Navbar {
+        height: 75px;
+        padding: 2px;
+    }
+    .Navbar .Logo{
+        font-size: 14px;
+    }
+
+    .Navbar .btnMain {
+        position: absolute;
+        left: 0;
+        top: 26%;
+        left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: white;
+    }
+
+
+    #MainRouts {
+        position: fixed;
+        display: flex;
+        top: calc(100% - 53px);
+        left: 0;
+        border-radius: 0px;
+        flex-direction: row;
+        width: 100%;
+        padding-block: 0;
+        padding-inline: 0;
+    }
+
+    #MainRouts a.active:before {
+        content: '';
+        width: 100%;
+        height: 3px;
+        background-color: #b6dabe;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 2px;
+    }
+
+    #MainRouts span:hover .tookTip {
+        display: none;
+    }
+
+    .Navbar.show #MainRouts {
+        left: 0;
+        opacity: 0.3;
+        pointer-events: none;
+        top: 100%;
+    }
+}
+
+.Navbar-inner2Box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.Navbar-inner2Box i {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin-right: 7px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+}
+
+.Navbar-inner2Box i .adminTooltip {
+    position: absolute;
+    font-size: 9px;
+    top: 6px;
+    white-space: nowrap;
+    left: -60px;
+    display: none;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1px 9px;
+    transition: all ease-in-out 0.3s;
+    display: none;
+}
+.Navbar-inner2Box i:hover .adminTooltip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

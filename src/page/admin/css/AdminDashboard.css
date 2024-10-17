@@ -1,0 +1,115 @@
+.AdminDashboard {
+    width: 100%;
+    height: 100%;
+    color: white;
+    position: relative;
+    padding: 9px;
+
+    background: rgba(255, 255, 255, 0.196);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.AdminDashboard .adminChart {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.AdminDashboard h2 {
+    color: white;
+}
+
+@media only screen and (max-width: 522px) {
+    .AdminDashboard h2 {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+    }
+}
+
+.AdminDashboard .adminChart .chart-container {
+    margin: 20px 0;
+    background-color: transparent;
+    padding: 15px;
+    border-radius: 8px;
+    height: fit-content;
+    width: clamp(330px, 40%, 450px);
+    background: rgba(0, 0, 0, 0.045);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.AdminDashboard .adminChart .chart-container.Sales div{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.AdminDashboard .adminChart .chart-container.Sales h5{
+    white-space: nowrap;
+}
+.AdminDashboard .adminChart .chart-container.Sales .date-range-filters{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 5px;
+    
+}
+.AdminDashboard .adminChart .chart-container.Sales .date-range-filters input{
+    width: 70px;
+}
+
+.total-sales {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1; /* Light gray background for sales */
+    border-radius: 8px;
+    color: #000000; /* Black text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+   
+}
+
+/* Chart color schemes */
+.bar-chart,
+.line-chart {
+    background-color: #ffffff; /* Ensure chart areas remain white */
+    padding: 10px;
+    border-radius: 8px;
+    
+}
+
+/* Optional: Adjust Chart.js defaults for white themes */
+canvas {
+    background-color: transparent !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 916px) {
+    .AdminDashboard .adminChart .chart-container {
+        width: 90%;
+    }
+}

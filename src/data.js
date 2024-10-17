@@ -1,0 +1,1 @@
+export let VITE_API_URL = "https://ecommerce-ohkj.onrender.com/api/v1"

@@ -1,0 +1,225 @@
+.Cart {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-inline: 65px;
+    padding-block: 20px;
+    gap: 10px;
+    margin-top: 5px;
+}
+.Cart .cartList {
+    width: 75%;
+    background: rgba(255, 255, 255, 0.102);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 10px;
+    padding-inline: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow-x: auto;
+}
+.Cart .cartList::-webkit-scrollbar{
+    display: none;
+}
+.Cart .cartList .cartData {
+    border-radius: 8px;
+    height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.102);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding-right: 30px;
+
+}
+.Cart .cartList .cartData .data img {
+    height: 100%;
+    width: 80px;
+    background-color: blue;
+}
+.Cart .cartList .cartData .data {
+    display: flex;
+    gap: 10px;
+}
+.Cart .cartList .cartData .data .name {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Cart .payCart {
+    width: clamp(300px,35%,500px);
+    background: rgba(255, 255, 255, 0.102);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+}
+
+.Cart .cartList .cartData .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: end;
+}
+.Cart .cartList .cartData .info button {
+    width: 60px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+.Cart .cartList .cartData .info button:hover {
+    background-color: #98c2a1;
+}
+
+/* payCart */
+
+.Cart .payCart {
+    display: flex;
+    flex-direction: column;
+}
+.Cart .payCart .topBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    padding: 8px;
+    gap: 5px;
+}
+.Cart .payCart .topBox div h1,
+.Cart .payCart .topBox .btnBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Cart .payCart .topBox div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+}
+.Cart .payCart .topBox div h1 {
+    font-size: clamp(12px, 100%, 50px);
+}
+
+.Cart .payCart .topBox div .btn {
+    background-color: #98c2a1;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 19px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.Cart .payCart .topBox div .btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all ease-in 0.3s;
+}
+
+.Cart .payCart .btnBox span.btn {
+    font-size: clamp(12px, 70%, 20px);
+}
+
+.cartList .removeCart {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 3px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 1042px) {
+    .Cart{
+        flex-direction: column;
+        padding: 0;
+    }
+    .Cart .cartList{
+        width: 100%;
+        max-height: 100%;
+        overflow-x: auto;
+        min-height: 120px;
+    }
+    .Cart .cartList::-webkit-scrollbar{
+        display: none;
+    }
+    .Cart .payCart{
+        width: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .Cart{
+        height: calc(100% - 43px);
+    }
+
+    .Cart .cartList{
+        padding-inline: 5px;
+        font-size: 12px;
+        height: ;
+    }
+    .Cart .cartList h4{
+        font-size: 10px;
+        white-space: nowrap;
+        max-width: 150px;
+        overflow: hidden;
+    }
+
+}
+
+@media only screen and (max-width: 330px) {
+    .Cart .cartList h4{
+        font-size: 7px;
+        width: 100px;
+    }
+    .Cart .payCart .topBox{
+        height: 200px;
+        
+        font-size: 12px;
+    }
+    .Cart .payCart .topBox .btnBox{
+        margin-top: 10px;
+    }
+
+}

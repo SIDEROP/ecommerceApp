@@ -1,0 +1,342 @@
+.productDataAdmin {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    background-color: #f8f9fa;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.productDataAdmin .searchAdminProduct {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 4px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ProductListTitle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+.ProductListTitle h4 {
+    font-size: 22px;
+}
+
+.productDataAdmin .searchAdminProduct span {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.productDataAdmin .searchAdminProduct span .productSerch {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+}
+.productDataAdmin .searchAdminProduct span .productSerch input {
+    width: 40%;
+    max-width: 400px;
+}
+.productDataAdmin .searchAdminProduct span .productCountIfo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.productDataAdmin .searchAdminProduct input,
+.productDataAdmin .searchAdminProduct select {
+    /* existing styles */
+    padding: 8px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.productDataAdmin .searchAdminProduct span input::placeholder{
+    color: rgba(255, 255, 255, 0.563);
+}
+
+.productDataAdmin .searchAdminProduct span input {
+    width: clamp(200px, 50%, 350px);
+}
+.productDataAdmin .searchAdminProduct select ,
+.productDataAdmin .searchAdminProduct input {
+    background-color: transparent;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.761);
+    outline: none;
+    padding: 5px 3px;
+
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+
+.productDataAdmin .searchAdminProduct option{
+    color: black;
+}
+
+
+
+
+.productDAta {
+    flex: 1;
+    margin-right: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dataDb {
+    border-radius: 5px;
+    height: 100% !important;
+    width: 100%;
+}
+.dataDb div::-webkit-scrollbar{
+    display: none !important;
+}
+
+.CardAdmin {
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+    margin-bottom: 10px;
+    background: rgba(64, 63, 63, 0.098);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+}
+.CardAdmin .adminDeletProduct {
+    position: absolute;
+    right: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.033);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.CardAdmin span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 5px;
+}
+.CardAdmin span .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(31, 31, 31, 0.871);
+}
+.CardAdmin .img {
+    height: 50px;
+    border-radius: 5px;
+}
+.CardAdmin .img img {
+    height: 100%;
+    border-radius: 5px;
+}
+
+.ProductUpload {
+    width: 300px;
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.149);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.ProductUpload h2 {
+    margin-bottom: 15px;
+}
+
+p {
+    text-align: center;
+    color: #6c757d;
+    font-size: 16px;
+}
+
+.createProductBtnAdmin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 40px;
+}
+
+.createProductBtnAdmin span {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    outline: none;
+    color: white;
+    padding: 3px;
+    font-size: 15px;
+}
+
+.createProductBtnAdmin {
+    display: none;
+}
+
+
+.addNewProducts {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    position: relative;
+    width: 100%;
+    padding: 3px 10px;
+}
+.addNewProducts button{
+   width: fit-content;
+   cursor: pointer;
+   padding: 3px;
+   border-radius: 3px;
+   border: none;
+
+}
+
+
+
+@media only screen and (max-width: 1259px) {
+    .ProductUpload {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        top: 0;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background-color: rgba(0, 0, 0, 0.66);
+    }
+    .productDAta {
+        margin-right: 0px;
+        padding: 2px 5px;
+    }
+    .createProductBtnAdmin {
+        display: flex;
+    }
+    .ProductUpload.active {
+        display: none;
+    }
+
+    .createProductBtnAdmin span {
+        position: absolute;
+        left: 10px;
+    }
+    /* overflow: ; */
+}
+
+@media only screen and (max-width: 913px) {
+    .CardAdmin {
+        font-size: 11px;
+    }
+    .searchAdminProduct span .productCountIfo div {
+        font-size: 13px !important;
+        padding-top: 4px;
+    }
+}
+@media only screen and (max-width: 732px) {
+    .productDataAdmin .searchAdminProduct span .productSerch input,
+    .productDataAdmin .searchAdminProduct span .productSerch option {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+    }
+    .productDataAdmin .searchAdminProduct span .productSerch select {
+        width: 100px;
+    }
+}
+@media only screen and (max-width: 522px) {
+    .productDataAdmin {
+        border-radius: 0px;
+    }
+    .CardAdmin .adminDeletProduct {
+        top: 0;
+        right: 0;
+        transform: scale(0.7);
+        border-radius: 4px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .CardAdmin {
+        font-size: 9px;
+        padding: 0px;
+        gap: 2px;
+        justify-content: space-between;
+        padding-right: 20px;
+    }
+
+
+    .CardAdmin span .title {
+        font-size: 9px;
+    }
+    .CardAdmin span.hides{
+        display: none;
+    }
+    .CardAdmin span:nth-child(3) {
+        display: none;
+    }
+    .ProductUpload {
+        width: 230px;
+    }
+    .ProductUpload input {
+        font-size: 11px;
+    }
+    .createProductBtnAdmin span {
+        font-size: 11px;
+        width: fit-content;
+        left: 0;
+    }
+    .productDataAdmin .searchAdminProduct .productSerch input{
+        min-width: 180px;
+    }
+    .productDataAdmin .searchAdminProduct .productSerch input::placeholder{
+        font-size: 9px;
+    }
+}
