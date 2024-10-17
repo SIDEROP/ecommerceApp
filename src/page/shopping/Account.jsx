@@ -56,7 +56,7 @@ const Account = () => {
 
     useEffect(() => {
         if (!isAuthenticated || user?.role !== 'user') {
-            navigate('/auth', { replace: true });
+            navigate('ecommerceApp/auth', { replace: true });
         }
     }, [isAuthenticated, user, navigate]);
 

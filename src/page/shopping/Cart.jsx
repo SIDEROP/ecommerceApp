@@ -55,7 +55,7 @@ const Cart = () => {
 
     useEffect(() => {
         if (!isAuthenticated || user?.role !== 'user') {
-            return navigate('/auth', { replace: true });
+            return navigate('ecommerceApp/auth', { replace: true });
         }
         dispatch(getCart());
     }, [isAuthenticated, user, dispatch, navigate]);
@@ -125,7 +125,7 @@ const Cart = () => {
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     navigate(
-                                        `/product/${data?.productId?._id}`
+                                        `ecommerceApp/product/${data?.productId?._id}`
                                     );
                                 }}
                             >

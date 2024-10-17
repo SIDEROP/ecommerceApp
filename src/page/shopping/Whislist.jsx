@@ -19,7 +19,7 @@ const Whislist = () => {
 
     useEffect(() => {
         if (!isAuthenticated || user?.role !== 'user') {
-            navigate('/auth', { replace: true });
+            navigate('ecommerceApp/auth', { replace: true });
         }
     }, [isAuthenticated, user, navigate]);
 
@@ -41,13 +41,17 @@ const Whislist = () => {
                 <p className="empty-message">Your wishlist is empty</p>
             ) : (
                 <div className={`wishlist-box`}>
-                    <ul className={`wishlist-items ${wishlist?.length > 4?null:"flex"}`}>
+                    <ul
+                        className={`wishlist-items ${wishlist?.length > 4 ? null : 'flex'}`}
+                    >
                         {wishlist?.map((item) => (
                             <li
                                 key={item?.product?._id}
                                 className="wishlist-item"
                                 onClick={(e) => {
-                                    navigate(`/product/${item?.product?._id}`);
+                                    navigate(
+                                        `ecommerceApp/product/${item?.product?._id}`
+                                    );
                                 }}
                             >
                                 <div className="wishlist-item-content">

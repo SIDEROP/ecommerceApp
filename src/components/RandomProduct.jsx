@@ -34,7 +34,7 @@ const RandomProduct = () => {
                         <div
                             key={product._id}
                             className="product-card"
-                            onClick={() => navigate(`/product/${product?._id}`)}
+                            onClick={() => navigate(`ecommerceApp/product/${product?._id}`)}
                         >
                             {product?.images && product?.images?.length > 0 ? (
                                 <img

@@ -21,7 +21,7 @@ const Sidebar = () => {
             >
                 <i>{toggle ? <IoMdArrowDropright /> : <IoMdArrowDropleft />}</i>
             </span>
-            <div className="profuleAdmin" onClick={()=>navigate('/adminAccount')}>
+            <div className="profuleAdmin" onClick={()=>navigate('ecommerceApp/adminAccount')}>
                 <div className="imgAdmin">
                     <img style={{width:"100%"}} src={user?.img} alt="" />
                 </div>
@@ -71,7 +71,7 @@ const Sidebar = () => {
                     <span className="listName">Product</span>
                 </NavLink>
             </div>
-            <div className="setinAdin" onClick={() => dispatch(logoutUser()).then(()=>navigate("/adminLogin"))}>
+            <div className="setinAdin" onClick={() => dispatch(logoutUser()).then(()=>navigate("ecommerceApp/adminLogin"))}>
                 <i >
                     <CiLogout />
                 </i>

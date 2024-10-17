@@ -19,7 +19,7 @@ const Order = () => {
 
     useEffect(() => {
         if (!isAuthenticated && user.role !== 'user') {
-            return navigate('/auth', { replace: true });
+            return navigate('ecommerceApp/auth', { replace: true });
         }
         dispatch(getAllOrders());
     }, [isAuthenticated, dispatch]);
@@ -48,7 +48,7 @@ const Order = () => {
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         navigate(
-                                                            `/product/${product?._id}`
+                                                            `ecommerceApp/product/${product?._id}`
                                                         );
                                                     }}
                                                     key={index}
@@ -86,7 +86,7 @@ const Order = () => {
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 navigate(
-                                                    `/product/${order?.productId?._id}`
+                                                    `ecommerceApp/product/${order?.productId?._id}`
                                                 );
                                             }}
                                         >

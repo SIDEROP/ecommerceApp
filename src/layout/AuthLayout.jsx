@@ -18,9 +18,9 @@ const AuthLayout = () => {
 
     useEffect(() => {
         if (isAuthenticated && user?.role === 'admin') {
-            return naviget('/admin', { replace: true });
+            return naviget('ecommerceApp/admin', { replace: true });
         } else if (isAuthenticated && user?.role === 'user') {
-            return naviget('/', { replace: true });
+            return naviget('ecommerceApp/', { replace: true });
         }
     }, [isAuthenticated]);
 

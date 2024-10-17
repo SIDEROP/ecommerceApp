@@ -25,7 +25,7 @@ const Navbar = () => {
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim() !== '') {
-            navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+            navigate(`ecommerceApp/search?query=${encodeURIComponent(searchQuery)}`);
         }
     };
 
@@ -55,7 +55,7 @@ const Navbar = () => {
 
     return (
         <div className="Navbar">
-            <div style={{justifyContent:"center",display:'flex',alignItems: 'center',gap:10}} className="Logo" onClick={() => navigate('/')}>
+            <div style={{justifyContent:"center",display:'flex',alignItems: 'center',gap:10}} className="Logo" onClick={() => navigate('ecommerceApp/')}>
                {
                 <div style={{width:"fit-content"}}>
                 <BackBtn />
@@ -92,7 +92,7 @@ const Navbar = () => {
                                             size={22}
                                             onClick={() =>
                                                 dispatch(logoutUser()).then(
-                                                    () => navigate('/')
+                                                    () => navigate('ecommerceApp/')
                                                 )
                                             }
                                         />
@@ -104,7 +104,7 @@ const Navbar = () => {
                                 <span className="adminTooltip">Login</span>
                                 <AiOutlineLogin
                                     size={22}
-                                    onClick={() => navigate('/auth')}
+                                    onClick={() => navigate('ecommerceApp/auth')}
                                 />
                             </>
                         )}
@@ -117,7 +117,7 @@ const Navbar = () => {
                 <span>
                     <span className="tookTip">My Order</span>
                     <NavLink
-                        to="/order"
+                        to="ecommerceApp/order"
                         className={({ isActive }) =>
                             isActive ? 'active' : null
                         }
@@ -131,7 +131,7 @@ const Navbar = () => {
                 <span className="">
                     <span className="tookTip">My Cart</span>
                     <NavLink
-                        to="/cart"
+                        to="ecommerceApp/cart"
                         className={({ isActive }) =>
                             isActive ? 'active' : null
                         }
@@ -145,7 +145,7 @@ const Navbar = () => {
                 <span>
                     <span className="tookTip">My Whislist</span>
                     <NavLink
-                        to="/whislist"
+                        to="ecommerceApp/whislist"
                         className={({ isActive }) =>
                             isActive ? 'active' : null
                         }
@@ -159,7 +159,7 @@ const Navbar = () => {
                 <span>
                     <span className="tookTip">My Account</span>
                     <NavLink
-                        to="/account"
+                        to="ecommerceApp/account"
                         className={({ isActive }) =>
                             isActive ? 'active' : null
                         }
