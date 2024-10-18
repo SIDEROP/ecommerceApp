@@ -1,0 +1,92 @@
+.cancel-page {
+    height: 100vh; /* Full-screen layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        135deg,
+        rgba(173, 216, 230, 0.3),
+        rgba(240, 255, 255, 0.4)
+    ); /* Soft blue gradient */
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    width: 100%;
+}
+
+.cancel-glass {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.2
+    ); /* Transparent white for the glass effect */
+    border-radius: 20px;
+    padding: 60px;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* Outer shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Soft border */
+    backdrop-filter: blur(15px); /* Glass-like blurring inside the element */
+    -webkit-backdrop-filter: blur(15px);
+    text-align: center;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+    position: relative;
+    animation: fadeInSlideUp 1.2s ease-in-out;
+    z-index: 1;
+    max-width: 500px;
+}
+
+.cancel-glass h1 {
+    font-size: 1.3rem;
+    color: #ff6b6b; /* Soft red for a warning */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.cancel-glass p {
+    font-size: 1rem;
+    color: #eee; /* Soft text for a modern look */
+    margin-bottom: 40px;
+}
+
+/* Light glow animation for the background */
+.cancel-glass::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.3),
+        transparent 60%
+    );
+    animation: rotateGlow 10s infinite linear;
+    z-index: -1;
+}
+
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

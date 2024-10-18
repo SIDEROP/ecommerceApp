@@ -51,7 +51,7 @@ const App = () => {
                     />
                     <Route path="/ecommerceApp/search" element={<SearchProduct />} />
 
-                    <Route path="/ecommerceApp/success/:orderId" element={<Success />} />
+                    <Route path="/ecommerceApp/success/:orderId?" element={<Success />} />
                     <Route path="/ecommerceApp/cancel" element={<Cancel />} />
                 </Route>
 
