@@ -11,7 +11,7 @@ const BackBtn = () => {
         if (historyState && historyState.idx > 0) {
             navigate(-1);
         } else {
-            navigate('ecommerceApp/', { replace: true });
+            navigate('/ecommerceApp', { replace: true });
         }
     };
 

@@ -65,7 +65,7 @@ const LoginAdmin = () => {
     const handleBackClick = () => {
         const historyState = window.history?.state;
         if (historyState && historyState.idx > 0) {
-            navigate('ecommerceApp/', { replace: true });
+            navigate('/ecommerceApp', { replace: true });
         }
     };
 

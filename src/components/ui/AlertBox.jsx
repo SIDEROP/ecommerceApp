@@ -6,7 +6,7 @@ const AlertBox = ({title,path}) => {
     let naviget = useNavigate()
     return (
         <div className="alertBox">
-            <h3 onClick={()=>naviget(`ecommerceApp/${path}`)}>{title}</h3>
+            <h3 onClick={()=>naviget(`/ecommerceApp${path}`)}>{title}</h3>
         </div>
     )
 }

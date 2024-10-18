@@ -16,11 +16,11 @@ const AdminLayout = () => {
 
     useEffect(() => {
         if (isAuthenticated && user?.role === 'admin') {
-            return naviget('ecommerceApp/admin', { replace: true });
+            return naviget('/ecommerceApp/admin', { replace: true });
         } else if (isAuthenticated && user?.role === 'user') {
-            return naviget('ecommerceApp/', { replace: true });
+            return naviget('/ecommerceApp/', { replace: true });
         } else {
-            return naviget('ecommerceApp/adminLogin', { replace: true });
+            return naviget('/ecommerceApp/adminLogin', { replace: true });
         }
     }, [isAuthenticated]);
 

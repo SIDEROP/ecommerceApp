@@ -17,7 +17,7 @@ const CheckAuth = () => {
 
     useEffect(() => {
         if (isAuthenticated && user?.role === 'admin') {
-            return naviget('ecommerceApp/admin',{ replace: true })
+            return naviget('/ecommerceApp/admin',{ replace: true })
         }
     }, [isAuthenticated])
     return (

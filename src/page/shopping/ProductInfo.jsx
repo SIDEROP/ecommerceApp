@@ -84,7 +84,7 @@ const ProductInfo = () => {
 
     const handleAddToWishlist = () => {
         if (!isAuthenticated || user?.role !== 'user') {
-            return navigate('ecommerceApp/auth');
+            return navigate('/ecommerceApp/auth');
         }
         dispatch(addToWishlist(productId));
     };
@@ -106,7 +106,7 @@ const ProductInfo = () => {
 
     const handleAddComment = () => {
         if (!isAuthenticated || user?.role !== 'user') {
-            return navigate('ecommerceApp/auth');
+            return navigate('/ecommerceApp/auth');
         }
         if (newComment && selectedRating > 0) {
             dispatch(
@@ -272,7 +272,7 @@ const ProductInfo = () => {
                             className="add-to-cart-btn"
                             onClick={() => {
                                 if (!isAuthenticated && user.role !== 'user') {
-                                    return navigate('ecommerceApp/auth');
+                                    return navigate('/ecommerceApp/auth');
                                 }
                                 dispatch(
                                     addProductToCart({

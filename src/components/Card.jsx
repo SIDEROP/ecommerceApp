@@ -23,7 +23,7 @@ const Card = ({ data }) => {
     };
 
     return (
-        <div className="card" onClick={() => navigate(`/product/${data?._id}`)}>
+        <div className="card" onClick={() => navigate(`/ecommerceApp/product/${data?._id}`)}>
             <div className="image_container">
                 {data?.images && data?.images?.length > 0 ? (
                     <img className="image" key={0} src={data?.images[0]} style={{ borderRadius: '10px' }} />

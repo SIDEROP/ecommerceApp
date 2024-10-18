@@ -120,6 +120,10 @@ const ProductAdmin = () => {
                         <div>{product?.flavors?.join(', ')}</div>
                     </span>
                 )}
+                <span>
+                    <div className="title">Date</div>
+                    <div>{new Date(product?.createdAt).toLocaleDateString('en-GB')}</div>
+                </span>
 
                 <div className="adminDeletProduct">
                     <MdDelete

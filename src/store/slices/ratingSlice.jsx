@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import {VITE_API_URL} from "../../data"
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'https://ecommerce-ohkj.onrender.com/api/v1'
 
-// const { VITE_API_URL } = import.meta.env;
 
 const initialState = {
     ratings: [],
@@ -16,7 +16,7 @@ export const fetchRatingsComments = createAsyncThunk(
     async (productId, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/rating/${productId}`
+                `${VITE_API_URL || localUrl}/rating/${productId}`
             );
             return response.data;
         } catch (error) {
@@ -33,7 +33,7 @@ export const createRatingComment = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         console.log(data);
         try {
-            const response = await axios.post(`${VITE_API_URL}/rating`, data, {
+            const response = await axios.post(`${VITE_API_URL || localUrl}/rating`, data, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export const updateRatingComment = createAsyncThunk(
     async ({ id, data }, { rejectWithValue }) => {
         try {
             const response = await axios.put(
-                `${VITE_API_URL}/rating/${id}`,
+                `${VITE_API_URL || localUrl}/rating/${id}`,
                 data,
                 {
                     withCredentials: true,
@@ -91,7 +91,7 @@ export const deleteRatingComment = createAsyncThunk(
     'ratings/deleteRatingComment',
     async (id, { rejectWithValue }) => {
         try {
-            await axios.delete(`${VITE_API_URL}/rating/${id}`, {
+            await axios.delete(`${VITE_API_URL || localUrl}/rating/${id}`, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',

@@ -152,6 +152,9 @@ const OrderAdmin = () => {
                 <p>
                     <span>Status:</span> {order?.status}
                 </p>
+                <p>
+                    <span>Date:</span> {new Date(order?.createdAt).toLocaleDateString('en-GB')}
+                </p>
                 <div className="orderActions">
                     <button
                         style={{ cursor: 'pointer' }}

@@ -60,7 +60,7 @@ const Login = () => {
                 if (historyState && historyState.idx > 0) {
                     navigate(-1);
                 } else {
-                    navigate('/');
+                    navigate('/ecommerceApp');
                 }
                 setFormData({
                     email: '',
@@ -198,7 +198,7 @@ const Login = () => {
                     )}
                 </button>
                 <button
-                    onClick={() => navigate('/auth/register')}
+                    onClick={() => navigate('/ecommerceApp/auth/register')}
                     title="Sign In"
                     className="sign-in_btn"
                     disabled={loading}

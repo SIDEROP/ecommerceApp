@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { updateUserAddress } from './authSlice';
 import toast from 'react-hot-toast';
-import {VITE_API_URL} from "../../data"
 
-// const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'https://ecommerce-ohkj.onrender.com/api/v1'
 
 // Create or Update Address
 export const createOrUpdateAddress = createAsyncThunk(
@@ -12,7 +12,7 @@ export const createOrUpdateAddress = createAsyncThunk(
     async (addressData, { rejectWithValue, getState ,dispatch}) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/address/create`,
+                `${VITE_API_URL || localUrl}/address/create`,
                 addressData,
                 {
                     withCredentials: true,

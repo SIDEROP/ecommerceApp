@@ -21,7 +21,7 @@ const Sidebar = () => {
             >
                 <i>{toggle ? <IoMdArrowDropright /> : <IoMdArrowDropleft />}</i>
             </span>
-            <div className="profuleAdmin" onClick={()=>navigate('ecommerceApp/adminAccount')}>
+            <div className="profuleAdmin" onClick={()=>navigate('/ecommerceApp/adminAccount')}>
                 <div className="imgAdmin">
                     <img style={{width:"100%"}} src={user?.img} alt="" />
                 </div>
@@ -32,7 +32,7 @@ const Sidebar = () => {
             </div>
             <div className="listAdminRouts">
                 <NavLink
-                    to="/admin"
+                    to="/ecommerceApp/admin"
                     className={({ isActive }) => (isActive ? 'active' : null)}
                 >
                     <i>
@@ -45,7 +45,7 @@ const Sidebar = () => {
                     <span className="listName">Deshbord</span>
                 </NavLink>
                 <NavLink
-                    to="/adminorder"
+                    to="/ecommerceApp/adminorder"
                     className={({ isActive }) => (isActive ? 'active' : null)}
                 >
                     <i>
@@ -58,7 +58,7 @@ const Sidebar = () => {
                     <span className="listName">Order</span>
                 </NavLink>
                 <NavLink
-                    to="/product"
+                    to="/ecommerceApp/product"
                     className={({ isActive }) => (isActive ? 'active' : null)}
                 >
                     <i>
@@ -71,7 +71,7 @@ const Sidebar = () => {
                     <span className="listName">Product</span>
                 </NavLink>
             </div>
-            <div className="setinAdin" onClick={() => dispatch(logoutUser()).then(()=>navigate("ecommerceApp/adminLogin"))}>
+            <div className="setinAdin" onClick={() => dispatch(logoutUser()).then(()=>navigate("/ecommerceApp/adminLogin"))}>
                 <i >
                     <CiLogout />
                 </i>

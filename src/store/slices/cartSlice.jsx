@@ -2,9 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { updateOrderStatus } from './orderSlice';
 import toast from 'react-hot-toast';
-import {VITE_API_URL} from "../../data"
-
-// const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'https://ecommerce-ohkj.onrender.com/api/v1'
 
 // Add product to cart thunk (createCart API)
 export const addProductToCart = createAsyncThunk(
@@ -12,7 +11,7 @@ export const addProductToCart = createAsyncThunk(
     async ({ productId, quantity }, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/cart/createCart`,
+                `${VITE_API_URL || localUrl}/cart/createCart`,
                 { productId, quantity },
                 {
                     withCredentials: true,
@@ -40,7 +39,7 @@ export const getCart = createAsyncThunk(
     'cart/getCart',
     async (_, { rejectWithValue, dispatch }) => {
         try {
-            const response = await axios.get(`${VITE_API_URL}/cart/getCart`, {
+            const response = await axios.get(`${VITE_API_URL || localUrl}/cart/getCart`, {
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -59,7 +58,7 @@ export const removeFromCart = createAsyncThunk(
     async (productId, { rejectWithValue }) => {
         try {
             const response = await axios.delete(
-                `${VITE_API_URL}/cart/removeFromCart/${productId}`,
+                `${VITE_API_URL || localUrl}/cart/removeFromCart/${productId}`,
                 {
                     withCredentials: true,
                     headers: {

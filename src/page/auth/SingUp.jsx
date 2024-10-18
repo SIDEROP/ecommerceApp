@@ -253,7 +253,7 @@ const SingUp = () => {
                     )}
                 </button>
                 <button
-                    onClick={() => navigate('/auth')}
+                    onClick={() => navigate('/ecommerceApp/auth')}
                     title="Sign In"
                     type="submit"
                     className="sign-in_btn"

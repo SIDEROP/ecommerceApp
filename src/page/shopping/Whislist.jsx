@@ -19,7 +19,7 @@ const Whislist = () => {
 
     useEffect(() => {
         if (!isAuthenticated || user?.role !== 'user') {
-            navigate('ecommerceApp/auth', { replace: true });
+            navigate('/ecommerceApp/auth', { replace: true });
         }
     }, [isAuthenticated, user, navigate]);
 
@@ -50,7 +50,7 @@ const Whislist = () => {
                                 className="wishlist-item"
                                 onClick={(e) => {
                                     navigate(
-                                        `ecommerceApp/product/${item?.product?._id}`
+                                        `/ecommerceApp/product/${item?.product?._id}`
                                     );
                                 }}
                             >

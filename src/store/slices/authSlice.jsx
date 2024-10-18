@@ -2,16 +2,16 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { parseErrorMessage } from '../../utils/parseErrorMessage';
-import {VITE_API_URL} from "../../data"
 
-// const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'https://ecommerce-ohkj.onrender.com/api/v1'
 
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/auth/registerUser`,
+                `${VITE_API_URL || localUrl}/auth/registerUser`,
                 data,
                 {
                     withCredentials: true,
@@ -36,7 +36,7 @@ export const loginUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/auth/loginUser`,
+                `${VITE_API_URL || localUrl}/auth/loginUser`,
                 data,
                 {
                     withCredentials: true,
@@ -61,7 +61,7 @@ export const loginAdmin = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/auth/loginAdmin`,
+                `${VITE_API_URL || localUrl}/auth/loginAdmin`,
                 data,
                 {
                     withCredentials: true,
@@ -85,7 +85,7 @@ export const reLoginUser = createAsyncThunk(
     'auth/reLoginUser',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${VITE_API_URL}/auth/reLogin`, {
+            const response = await axios.get(`${VITE_API_URL || localUrl}/auth/reLogin`, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ export const logoutUser = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/auth/logoutUser`,
+                `${VITE_API_URL || localUrl}/auth/logoutUser`,
                 {
                     withCredentials: true,
                     headers: {
@@ -129,7 +129,7 @@ export const updateUser = createAsyncThunk(
     async ({ data }, { rejectWithValue, dispatch }) => {
         try {
             const response = await axios.put(
-                `${VITE_API_URL}/auth/updateUser`,
+                `${VITE_API_URL || localUrl}/auth/updateUser`,
                 data,
                 {
                     withCredentials: true,

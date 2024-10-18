@@ -1,9 +1,9 @@
 // dashboardSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {VITE_API_URL} from "../../data"
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'http://localhost:4000/api/v1'
 
-// const { VITE_API_URL } = import.meta.env;
 
 // Thunk for fetching dashboard summary
 export const fetchDashboardSummary = createAsyncThunk(
@@ -11,7 +11,7 @@ export const fetchDashboardSummary = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/dashboard/summary`,
+                `${VITE_API_URL || localUrl}/dashboard/summary`,
                 {
                     withCredentials: true ,
                     headers: {
@@ -33,17 +33,18 @@ export const fetchDashboardSummary = createAsyncThunk(
 export const fetchDailyEarnings = createAsyncThunk(
     'dashboard/fetchDailyEarnings',
     async ({ startDate, endDate }, { rejectWithValue }) => {
+        console.log( startDate, endDate)
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/dashboard/fetchDailyEarnings?startDate=${startDate}&endDate=${endDate}`,
+                `${VITE_API_URL || localUrl}/dashboard/fetchDailyEarnings?startDate=${startDate}&endDate=${endDate}`,
                 {
                     withCredentials: true ,
-                    params: { startDate, endDate },
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
                 }
             );
+            console.log(response.data)
             return response.data?.data;
         } catch (error) {
             return rejectWithValue(

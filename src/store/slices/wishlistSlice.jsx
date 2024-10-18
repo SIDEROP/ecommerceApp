@@ -2,9 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { productOneWislistToggle } from './productSlice';
-import {VITE_API_URL} from "../../data"
-
-// const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'https://ecommerce-ohkj.onrender.com/api/v1';
 
 // Add product to wishlist
 export const addToWishlist = createAsyncThunk(
@@ -12,7 +11,7 @@ export const addToWishlist = createAsyncThunk(
     async (productId, { rejectWithValue, dispatch }) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/wishlist/add`,
+                `${VITE_API_URL || localUrl}/wishlist/add`,
                 { productId },
                 {
                     withCredentials: true,
@@ -40,7 +39,7 @@ export const fetchWishlist = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/wishlist`,
+                `${VITE_API_URL || localUrl}/wishlist`,
                 {
                     withCredentials: true,
                     headers: {
@@ -64,7 +63,7 @@ export const removeFromWishlist = createAsyncThunk(
     async (productId, { rejectWithValue }) => {
         try {
             const response = await axios.delete(
-                `${VITE_API_URL}/wishlist/remove/${productId}`,
+                `${VITE_API_URL || localUrl}/wishlist/remove/${productId}`,
 
                 {
                     withCredentials: true,

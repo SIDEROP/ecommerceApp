@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
 import toast from 'react-hot-toast';
-import {VITE_API_URL} from "../../data"
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'http://localhost:4000/api/v1'
 
-// const { VITE_API_URL } = import.meta.env;
 
 // Create order thunk (createOrder API)
 export const createOrder = createAsyncThunk(
@@ -13,7 +13,7 @@ export const createOrder = createAsyncThunk(
         try {
             // Make API request to create the order and retrieve the session ID
             const response = await axios.post(
-                `${VITE_API_URL}/paymentGateway/createOrder`,
+                `${VITE_API_URL || localUrl}/paymentGateway/createOrder`,
                 products,
                 {
                     withCredentials: true,
@@ -42,7 +42,7 @@ export const updateOrderStatus = createAsyncThunk(
     async (ProductOrderId, { rejectWithValue, getState }) => {
         try {
             const response = await axios.put(
-                `${VITE_API_URL}/paymentGateway/updateOrderStatus`,
+                `${VITE_API_URL || localUrl}/paymentGateway/updateOrderStatus`,
                 { ProductOrderId },
                 {
                     withCredentials: true,
@@ -67,7 +67,7 @@ export const getAllOrders = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/order/getAllOrders`,
+                `${VITE_API_URL || localUrl}/order/getAllOrders`,
                 {
                     withCredentials: true,
                     headers: {
@@ -89,7 +89,7 @@ export const refundOrder = createAsyncThunk(
     async (orderId, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/paymentGateway/refundOrder/${orderId}`,
+                `${VITE_API_URL || localUrl}/paymentGateway/refundOrder/${orderId}`,
                 {},
                 {
                     withCredentials: true,
@@ -117,7 +117,7 @@ export const fetchAllUserOrders = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/order/getAllUserOrders`,
+                `${VITE_API_URL || localUrl}/order/getAllUserOrders`,
                 {
                     withCredentials: true,
                     headers: {
@@ -138,7 +138,7 @@ export const updateOrderStatusAdmin = createAsyncThunk(
     async ({ orderId, status }, { rejectWithValue, dispatch }) => {
         try {
             const response = await axios.put(
-                `${VITE_API_URL}/order/updateOrderStatusAdmin/${orderId}/status`,
+                `${VITE_API_URL || localUrl}/order/updateOrderStatusAdmin/${orderId}/status`,
                 { status },
                 {
                     withCredentials: true,

@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import {VITE_API_URL} from "../../data"
+const { VITE_API_URL } = import.meta.env;
+const localUrl = 'https://ecommerce-ohkj.onrender.com/api/v1'
 
-// const { VITE_API_URL } = import.meta.env;
 
 // Get Products Thunk
 export const getProducts = createAsyncThunk(
@@ -11,7 +11,7 @@ export const getProducts = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/products/getProduct`,
+                `${VITE_API_URL || localUrl}/products/getProduct`,
                 {
                     withCredentials: true,
                     headers: {
@@ -33,7 +33,7 @@ export const createProduct = createAsyncThunk(
     async (productData, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                `${VITE_API_URL}/products/createProduct`,
+                `${VITE_API_URL || localUrl}/products/createProduct`,
                 productData,
                 {
                     withCredentials: true,
@@ -63,7 +63,7 @@ export const updateProduct = createAsyncThunk(
     async ({ id, productData }, { rejectWithValue }) => {
         try {
             const response = await axios.put(
-                `${VITE_API_URL}/products/updateProduct/${id}`,
+                `${VITE_API_URL || localUrl}/products/updateProduct/${id}`,
                 productData,
                 {
                     withCredentials: true,
@@ -91,7 +91,7 @@ export const deleteProduct = createAsyncThunk(
     async (productId, { rejectWithValue }) => {
         try {
             const response = await axios.delete(
-                `${VITE_API_URL}/products/deleteProduct/${productId}`,
+                `${VITE_API_URL || localUrl}/products/deleteProduct/${productId}`,
                 {
                     withCredentials: true,
                     headers: {
@@ -118,7 +118,7 @@ export const getProductById = createAsyncThunk(
     async (productId, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/products/getProduct/${productId}`,
+                `${VITE_API_URL || localUrl}/products/getProduct/${productId}`,
                 {
                     withCredentials: true,
                     headers: {
@@ -140,7 +140,7 @@ export const searchProducts = createAsyncThunk(
     async (searchQuery, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/products/searchProducts`,
+                `${VITE_API_URL || localUrl}/products/searchProducts`,
                 {
                     params: { search: searchQuery },
                     withCredentials: true,
@@ -165,7 +165,7 @@ export const searchProductsByCategory = createAsyncThunk(
     async (searchQuery, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${VITE_API_URL}/products/searchCategory`,
+                `${VITE_API_URL || localUrl}/products/searchCategory`,
                 {
                     params: { search: searchQuery },
                     withCredentials: true,
